@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Direction;
@@ -75,7 +74,7 @@ public class MazeGen : MonoBehaviour {
     private void GenMaze() {
         lastNode = new Stack<Node>();
         var current = nodes[0, numNodesX/2];
-        var start = current;
+        current.visited = true;
 
         do {
             var next = GetRandomNeighbour(current);
@@ -86,8 +85,6 @@ public class MazeGen : MonoBehaviour {
                 current = lastNode.Pop();
             }
         } while (lastNode.Count > 0);
-
-        start.direction = NULL;
     }
 
     private void CreateRooms() {
