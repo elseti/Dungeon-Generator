@@ -66,7 +66,6 @@ public class MazeGen : MonoBehaviour {
 
         var neighbour = neighbours[i];
         neighbour.direction = opposite[dirs[i]];
-        neighbour.visited = true;
         neighbour.SetConnection(neighbour.direction);
         return neighbour;
     }
@@ -74,9 +73,9 @@ public class MazeGen : MonoBehaviour {
     private void GenMaze() {
         lastNode = new Stack<Node>();
         var current = nodes[0, numNodesX/2];
-        current.visited = true;
 
         do {
+            current.visited = true;
             var next = GetRandomNeighbour(current);
             if (next != null) {
                 lastNode.Push(current);
