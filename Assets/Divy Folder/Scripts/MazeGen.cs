@@ -7,7 +7,7 @@ public class MazeGen : MonoBehaviour {
     public int numNodesX = 5;
     public int numNodesY = 5;
 
-    public const float GRID_UNIT_SIZE = 5;
+    public const float GRID_UNIT_SIZE = 9;
 
     [SerializeField] private GameObject roomPrefab;
     [SerializeField] private GameObject level;
