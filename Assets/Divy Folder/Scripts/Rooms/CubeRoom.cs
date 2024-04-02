@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using static Direction;
 
-public class BaseRoom : MonoBehaviour, Room {
+public class CubeRoom : MonoBehaviour, IRoom {
     public float sizeX => MazeGen.GRID_UNIT_SIZE;
     public float sizeY => MazeGen.GRID_UNIT_SIZE;
     public float sizeZ => MazeGen.GRID_UNIT_SIZE;
@@ -24,6 +24,7 @@ public class BaseRoom : MonoBehaviour, Room {
     private GameObject _rightWallDoor;
     private GameObject _frontWallDoor;
     private GameObject _backWallDoor;
+    private GameObject _stairs;
     private GameObject _arrow;
 
     private Dictionary<Direction, Quaternion> rotation = new() {
@@ -65,17 +66,18 @@ public class BaseRoom : MonoBehaviour, Room {
         _rightWall = components[1];
         _frontWall = components[2];
         _backWall = components[3];
-        // 5 and 6 are floor and ceiling
-        components[5].SetActive(false);
-        components[6].SetActive(false);
+        // 4 and 5 are floor and ceiling
+        components[5].SetActive(false); // todo: temporary
         _leftWallDoor = components[6];
         _rightWallDoor = components[7];
         _frontWallDoor = components[8];
         _backWallDoor = components[9];
+        // 10 and 11 are floor and ceiling with stairs
         components[10].SetActive(false);
         components[11].SetActive(false);
-        // 10 and 11 are floor and ceiling with stairs
-        _arrow = components[12];
+        _stairs = components[12];
+        _arrow = components[13];
+        _stairs.SetActive(false);
         _arrow.SetActive(false);
         _leftWallDoor.SetActive(false);
         _rightWallDoor.SetActive(false);
