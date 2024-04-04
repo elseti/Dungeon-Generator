@@ -261,9 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6c6e2c2583e224cafd4403695cb895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numNodesX: 5
-  numNodesY: 5
-  roomPrefab: {fileID: 1712497376034792692, guid: 4d812ced36d2a0e468aaa75f919fe990, type: 3}
+  numNodesX: 10
+  numNodesY: 10
+  roomPrefab: {fileID: 7670495664361240192, guid: 553bb7bf7b9682c429a03108c6a55d3a, type: 3}
+  tunnelPrefab: {fileID: 4512733987353925044, guid: cbc8bdc10ee51b84a8ed1912a69cba4d, type: 3}
   level: {fileID: 1881112141}
   _showPath: 0
 --- !u!1 &1313374894

@@ -4,6 +4,8 @@ public class Node {
     public int gridX;
     public int gridY;
 
+    public NodeType type;
+
     public bool visited = false;
     public bool connectionLeft = false;
     public bool connectionRight = false;
@@ -16,7 +18,7 @@ public class Node {
     }
 
     public bool isEmpty() {
-        return connectionLeft || connectionRight || connectionFront || connectionBack;
+        return !(connectionLeft || connectionRight || connectionFront || connectionBack);
     }
 
     public void SetConnection(Direction dir) {
