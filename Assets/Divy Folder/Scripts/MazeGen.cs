@@ -10,6 +10,8 @@ public class MazeGen : MonoBehaviour {
     public const float GRID_UNIT_SIZE = 9;
 
     [SerializeField] private GameObject roomPrefab;
+    [SerializeField] private GameObject tunnelPrefab;
+
     [SerializeField] private GameObject level;
     [SerializeField] private bool _showPath = false;
 
@@ -62,6 +64,11 @@ public class MazeGen : MonoBehaviour {
         }
 
         var i = rnd.Next(neighbours.Count);
+        if (rnd.Next(100) < 20) {
+            neighbours[i].visited = true;
+            return GetRandomNeighbour(current);
+        }
+
         current.SetConnection(dirs[i]);
 
         var neighbour = neighbours[i];
@@ -88,14 +95,22 @@ public class MazeGen : MonoBehaviour {
 
     private void CreateRooms() {
         foreach (var node in nodes) {
-            var iroom = roomPrefab.GetComponent<Room>();
+            if (node.isEmpty()) {
+                continue;
+            }
+            var nodePrefab = roomPrefab;
+            if (rnd.Next(2) == 1) {
+                nodePrefab = tunnelPrefab;
+            }
+
+            var roomType = nodePrefab.GetComponent<IRoom>();
             var room = Instantiate(
-                roomPrefab,
-                new Vector3(node.gridX * iroom.sizeX, 0, node.gridY * iroom.sizeY),
+                nodePrefab,
+                new Vector3(node.gridX * roomType.sizeX, 0, node.gridY * roomType.sizeY),
                 Quaternion.identity,
                 level.transform
             );
-            var objRoom = room.GetComponent<BaseRoom>();
+            var objRoom = room.GetComponent<IRoom>();
             objRoom.SetWallsDir(node);
         }
     }
