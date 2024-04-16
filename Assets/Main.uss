@@ -1,0 +1,4 @@
+.title {
+    -unity-text-align: upper-center;
+    font-size: 24px;
+}
