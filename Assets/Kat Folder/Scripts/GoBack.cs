@@ -1,30 +1,30 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GoBack : EditorWindow
+public class GoBack : MonoBehaviour
 {
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
-
-    [MenuItem("Window/UI Toolkit/GoBack")]
-    public static void ShowExample()
+    private UIDocument document;
+    private GameObject playerObject;
+    private GameObject cameraDolly;
+    private GameObject generationUI;
+    private Button goBackButton;
+    private void Awake()
     {
-        GoBack wnd = GetWindow<GoBack>();
-        wnd.titleContent = new GUIContent("GoBack");
+        document = GetComponent<UIDocument>();
+        
+        playerObject = GameObject.Find("PlayerObject");
+        cameraDolly = GameObject.Find("CameraDolly");
+        generationUI = GameObject.Find("GenerationUI");
+        
+        goBackButton = document.rootVisualElement.Q("GoBackButton") as Button;
+        goBackButton.RegisterCallback<ClickEvent>(goBackHandler);
     }
 
-    public void CreateGUI()
+    private void goBackHandler(ClickEvent evt)
     {
-        // Each editor window contains a root VisualElement object
-        VisualElement root = rootVisualElement;
-
-        // VisualElements objects can contain other VisualElement following a tree hierarchy.
-        VisualElement label = new Label("Hello World! From C#");
-        root.Add(label);
-
-        // Instantiate UXML
-        VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
-        root.Add(labelFromUXML);
+        Debug.Log("Returning to Generation Menu...");
+        playerObject.SetActive(false);
+        cameraDolly.SetActive(true);
+        generationUI.SetActive(true);
     }
 }
