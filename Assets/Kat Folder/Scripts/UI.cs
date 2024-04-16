@@ -16,6 +16,9 @@ public class UI : MonoBehaviour
     private FloatField deadEndChanceInput;
 
     private MazeGen mazeGenScript;
+    private GameObject playerObject;
+    private GameObject cameraDolly;
+    private GameObject generationUI;
 
     private void Awake()
     {
@@ -32,6 +35,12 @@ public class UI : MonoBehaviour
         heightInput = document.rootVisualElement.Q("HeightInput") as IntegerField;
         deadEndChanceInput = document.rootVisualElement.Q("DeadEndChanceInput") as FloatField;
         
+        playerObject = GameObject.Find("PlayerObject");
+        cameraDolly = GameObject.Find("CameraDolly");
+        generationUI = GameObject.Find("GenerationUI");
+        
+        playerObject.SetActive(false);
+        
         mazeGenScript = FindObjectOfType<MazeGen>();
         mazeGenScript.RunGen();
     }
@@ -47,6 +56,12 @@ public class UI : MonoBehaviour
     private void playHandler(ClickEvent evt)
     {
         Debug.Log("Playing...");
+        
+        playerObject.SetActive(true);
+        // Reset position
+        playerObject.transform.position = new Vector3(1, 5, 0);
+        cameraDolly.SetActive(false);
+        generationUI.SetActive(false);
     }
 
     private void onDisable()
