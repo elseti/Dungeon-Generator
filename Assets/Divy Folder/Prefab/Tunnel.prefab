@@ -30,8 +30,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8200982151226148743}
-  - {fileID: 740928292380351850}
   - {fileID: 6744546214180817376}
   - {fileID: 5374058050807081140}
   - {fileID: 860054979812837075}
@@ -51,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee990eb94e2b4ed29a27d1db5f5b400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDirection: 4
+  startDirection: 0
   hasLeftConnection: 0
   hasRightConnection: 0
   hasFrontConnection: 0
@@ -69,7 +67,7 @@ GameObject:
   - component: {fileID: 4120690940049604942}
   - component: {fileID: 2575798671091928031}
   m_Layer: 0
-  m_Name: WallLeft
+  m_Name: WallFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +86,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.5, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7498725239314521708}
+  m_Father: {fileID: 6744546214180817376}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &8021553541653117150
 MeshFilter:
@@ -195,7 +193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.5}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2688132960376343565
@@ -345,7 +343,7 @@ GameObject:
   - component: {fileID: 2341274225539488936}
   - component: {fileID: 4787002450902607357}
   m_Layer: 0
-  m_Name: WallRight
+  m_Name: WallBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,7 +362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.5, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7498725239314521708}
+  m_Father: {fileID: 6744546214180817376}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!33 &5146581975222407516
 MeshFilter:
@@ -523,7 +521,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5853166863252573567, guid: 00becfc147f9b4cabbcce9c120f5d5d3, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 740928292380351850}
+    - targetCorrespondingSourceObject: {fileID: 5853166863252573567, guid: 00becfc147f9b4cabbcce9c120f5d5d3, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 8200982151226148743}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00becfc147f9b4cabbcce9c120f5d5d3, type: 3}
 --- !u!4 &6744546214180817376 stripped
