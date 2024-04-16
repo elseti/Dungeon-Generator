@@ -415,6 +415,10 @@ PrefabInstance:
       propertyPath: m_SlopeLimit
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 3723499076210129243, guid: ddcc210a894f44e87b1328112043a4f5, type: 3}
+      propertyPath: m_StepOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9045908537995300073, guid: ddcc210a894f44e87b1328112043a4f5, type: 3}
       propertyPath: m_Name
       value: PlayerObject

@@ -44,33 +44,7 @@ public class MazeGen : MonoBehaviour {
     }
 
     private Node GetRandomNeighbour(Node current) {
-        List<Node> neighbours = new();
-        List<Direction> dirs = new();
-
-        if(!current.connectionLeft && 0 < current.gridX && !nodes[ current.gridZ, current.gridY, current.gridX - 1].visited) {
-            neighbours.Add(nodes[ current.gridZ, current.gridY, current.gridX - 1]);
-            dirs.Add(LEFT);
-        }
-        if(!current.connectionRight && current.gridX + 1 < numNodesX && !nodes[current.gridZ, current.gridY, current.gridX + 1].visited) {
-            neighbours.Add(nodes[current.gridZ, current.gridY, current.gridX + 1]);
-            dirs.Add(RIGHT);
-        }
-        if(!current.connectionDown && !current.connectionUp && 0 < current.gridY && !nodes[current.gridZ, current.gridY - 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridZ, current.gridY - 1, current.gridX]);
-            dirs.Add(DOWN);
-        }
-        if(!current.connectionDown && !current.connectionUp && current.gridY + 1 < numNodesY && !nodes[current.gridZ, current.gridY + 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridZ, current.gridY + 1, current.gridX]);
-            dirs.Add(UP);
-        }
-        if(!current.connectionBack && 0 < current.gridZ && !nodes[current.gridZ - 1, current.gridY, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridZ - 1, current.gridY, current.gridX]);
-            dirs.Add(BACK);
-        }
-        if(!current.connectionFront && current.gridZ + 1 < numNodesZ && !nodes[current.gridZ + 1, current.gridY, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridZ + 1, current.gridY, current.gridX]);
-            dirs.Add(FRONT);
-        }
+        current.GetAllNeighbours(nodes, out var neighbours, out var dirs);
 
         if (neighbours.Count == 0) {
             return null;
