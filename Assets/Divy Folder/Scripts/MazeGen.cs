@@ -6,6 +6,7 @@ using Random = System.Random;
 public class MazeGen : MonoBehaviour {
     public int numNodesX = 5;
     public int numNodesY = 5;
+    public int numNodesZ = 5;
 
     public const float GRID_UNIT_SIZE = 9;
 
@@ -17,7 +18,7 @@ public class MazeGen : MonoBehaviour {
 
     public static bool showPath = false;
 
-    private Node[,] nodes;
+    private Node[,,] nodes;
     private Stack<Node> lastNode;
 
     private static Random rnd = new();
@@ -27,13 +28,17 @@ public class MazeGen : MonoBehaviour {
         { RIGHT, LEFT },
         { FRONT, BACK },
         { BACK, FRONT },
+        { UP, DOWN },
+        { DOWN, UP },
     };
 
     private void InitNodes() {
-        nodes = new Node[numNodesY, numNodesX];
-        for (var i = 0; i < numNodesY; ++i) {
-            for (var j = 0; j < numNodesX; ++j) {
-                nodes[i, j] = new Node(j, i);
+        nodes = new Node[numNodesZ, numNodesY, numNodesX];
+        for (var i = 0; i < numNodesZ; ++i) {
+            for (var j = 0; j < numNodesY; ++j) {
+                for(var k = 0; k < numNodesX; ++k) {
+                    nodes[i, j, k] = new Node(k, j, i);
+                }
             }
         }
     }
@@ -42,20 +47,28 @@ public class MazeGen : MonoBehaviour {
         List<Node> neighbours = new();
         List<Direction> dirs = new();
 
-        if(!current.connectionLeft && 0 < current.gridX && !nodes[ current.gridY, current.gridX - 1].visited) {
-            neighbours.Add(nodes[ current.gridY, current.gridX - 1]);
+        if(!current.connectionLeft && 0 < current.gridX && !nodes[ current.gridZ, current.gridY, current.gridX - 1].visited) {
+            neighbours.Add(nodes[ current.gridZ, current.gridY, current.gridX - 1]);
             dirs.Add(LEFT);
         }
-        if(!current.connectionRight && current.gridX + 1 < numNodesX && !nodes[current.gridY, current.gridX + 1].visited) {
-            neighbours.Add(nodes[current.gridY, current.gridX + 1]);
+        if(!current.connectionRight && current.gridX + 1 < numNodesX && !nodes[current.gridZ, current.gridY, current.gridX + 1].visited) {
+            neighbours.Add(nodes[current.gridZ, current.gridY, current.gridX + 1]);
             dirs.Add(RIGHT);
         }
-        if(!current.connectionBack && 0 < current.gridY && !nodes[current.gridY - 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridY - 1, current.gridX]);
+        if(!current.connectionDown && !current.connectionUp && 0 < current.gridY && !nodes[current.gridZ, current.gridY - 1, current.gridX].visited) {
+            neighbours.Add(nodes[current.gridZ, current.gridY - 1, current.gridX]);
+            dirs.Add(DOWN);
+        }
+        if(!current.connectionDown && !current.connectionUp && current.gridY + 1 < numNodesY && !nodes[current.gridZ, current.gridY + 1, current.gridX].visited) {
+            neighbours.Add(nodes[current.gridZ, current.gridY + 1, current.gridX]);
+            dirs.Add(UP);
+        }
+        if(!current.connectionBack && 0 < current.gridZ && !nodes[current.gridZ - 1, current.gridY, current.gridX].visited) {
+            neighbours.Add(nodes[current.gridZ - 1, current.gridY, current.gridX]);
             dirs.Add(BACK);
         }
-        if(!current.connectionFront && current.gridY + 1 < numNodesY && !nodes[current.gridY + 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridY + 1, current.gridX]);
+        if(!current.connectionFront && current.gridZ + 1 < numNodesZ && !nodes[current.gridZ + 1, current.gridY, current.gridX].visited) {
+            neighbours.Add(nodes[current.gridZ + 1, current.gridY, current.gridX]);
             dirs.Add(FRONT);
         }
 
@@ -79,7 +92,7 @@ public class MazeGen : MonoBehaviour {
 
     private void GenMaze() {
         lastNode = new Stack<Node>();
-        var current = nodes[0, numNodesX/2];
+        var current = nodes[0, 0, numNodesX/2];
 
         do {
             current.visited = true;
@@ -99,14 +112,14 @@ public class MazeGen : MonoBehaviour {
                 continue;
             }
             var nodePrefab = roomPrefab;
-            if (rnd.Next(2) == 1) {
+            if (rnd.Next(5) < 3 && !node.hasStairs()) {
                 nodePrefab = tunnelPrefab;
             }
 
             var roomType = nodePrefab.GetComponent<IRoom>();
             var room = Instantiate(
                 nodePrefab,
-                new Vector3(node.gridX * roomType.sizeX, 0, node.gridY * roomType.sizeY),
+                new Vector3(node.gridX * roomType.sizeX, node.gridY * roomType.sizeY, node.gridZ * roomType.sizeZ),
                 Quaternion.identity,
                 level.transform
             );
