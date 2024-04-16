@@ -32,19 +32,19 @@ public class MazeGen : MonoBehaviour {
         { DOWN, UP },
     };
 
-    private void InitNodes()
+    private void InitNodes(int x, int y, int z)
     {
-        nodes = new Node[numNodesZ, numNodesY, numNodesX];
-        for (var i = 0; i < numNodesZ; ++i) {
-            for (var j = 0; j < numNodesY; ++j) {
-                for(var k = 0; k < numNodesX; ++k) {
+        nodes = new Node[z, y, x];
+        for (var i = 0; i < z; ++i) {
+            for (var j = 0; j < y; ++j) {
+                for(var k = 0; k < x; ++k) {
                     nodes[i, j, k] = new Node(k, j, i);
                 }
             }
         }
     }
 
-    private Node GetRandomNeighbour(Node current) {
+    private Node GetRandomNeighbour(Node current, float deadEndChance) {
         current.GetAllNeighbours(nodes, out var neighbours, out var dirs);
 
         if (neighbours.Count == 0) {
@@ -52,9 +52,9 @@ public class MazeGen : MonoBehaviour {
         }
 
         var i = rnd.Next(neighbours.Count);
-        if (rnd.Next(100) < 20) {
+        if (rnd.Next(100) < deadEndChance) {
             neighbours[i].visited = true;
-            return GetRandomNeighbour(current);
+            return GetRandomNeighbour(current, deadEndChance);
         }
 
         current.SetConnection(dirs[i]);
@@ -65,14 +65,14 @@ public class MazeGen : MonoBehaviour {
         return neighbour;
     }
 
-    private void GenMaze()
+    private void GenMaze(float deadEndChance)
     {
         lastNode = new Stack<Node>();
         var current = nodes[0, 0, numNodesX/2];
 
         do {
             current.visited = true;
-            var next = GetRandomNeighbour(current);
+            var next = GetRandomNeighbour(current, deadEndChance);
             if (next != null) {
                 lastNode.Push(current);
                 current = next;
@@ -121,13 +121,13 @@ public class MazeGen : MonoBehaviour {
         }
     }
 
-    public void RunGen()
+    public void RunGen(int length, int width, int height, float deadEndChance)
     {
         // Debug.Log("Cleaning...");
         CleanGen();
         // Debug.Log("Generating...");
-        InitNodes();
-        GenMaze();
+        InitNodes(length, height, width);
+        GenMaze(deadEndChance);
         CreateRooms();
     }
 
