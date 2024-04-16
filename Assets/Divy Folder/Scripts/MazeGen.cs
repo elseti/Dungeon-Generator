@@ -32,7 +32,8 @@ public class MazeGen : MonoBehaviour {
         { DOWN, UP },
     };
 
-    private void InitNodes() {
+    private void InitNodes()
+    {
         nodes = new Node[numNodesZ, numNodesY, numNodesX];
         for (var i = 0; i < numNodesZ; ++i) {
             for (var j = 0; j < numNodesY; ++j) {
@@ -64,7 +65,8 @@ public class MazeGen : MonoBehaviour {
         return neighbour;
     }
 
-    private void GenMaze() {
+    private void GenMaze()
+    {
         lastNode = new Stack<Node>();
         var current = nodes[0, 0, numNodesX/2];
 
@@ -80,7 +82,8 @@ public class MazeGen : MonoBehaviour {
         } while (lastNode.Count > 0);
     }
 
-    private void CreateRooms() {
+    private void CreateRooms()
+    {
         foreach (var node in nodes) {
             if (node.isEmpty()) {
                 continue;
@@ -102,10 +105,36 @@ public class MazeGen : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void CleanGen()
+    {
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+
+        // Iterate through each GameObject
+        foreach (GameObject obj in allObjects)
+        {
+            // Check if the name contains "(Clone)"
+            if (obj.name.Contains("(Clone)"))
+            {
+                // Destroy the GameObject
+                Destroy(obj);
+            }
+        }
+    }
+
+    public void RunGen()
+    {
+        // Debug.Log("Cleaning...");
+        CleanGen();
+        // Debug.Log("Generating...");
         InitNodes();
         GenMaze();
         CreateRooms();
+    }
+
+    private void Start() {
+        // InitNodes();
+        // GenMaze();
+        // CreateRooms();
     }
 
     private void FixedUpdate() {

@@ -15,6 +15,8 @@ public class UI : MonoBehaviour
     private IntegerField heightInput;
     private FloatField deadEndChanceInput;
 
+    private MazeGen mazeGenScript;
+
     private void Awake()
     {
         document = GetComponent<UIDocument>();
@@ -29,13 +31,17 @@ public class UI : MonoBehaviour
         widthInput = document.rootVisualElement.Q("WidthInput") as IntegerField;
         heightInput = document.rootVisualElement.Q("HeightInput") as IntegerField;
         deadEndChanceInput = document.rootVisualElement.Q("DeadEndChanceInput") as FloatField;
+        
+        mazeGenScript = FindObjectOfType<MazeGen>();
+        mazeGenScript.RunGen();
     }
 
     private void generateHandler(ClickEvent evt)
     {
-        Debug.Log("Generating...");
         Debug.Log("Size: ["+lengthInput.value+", " + widthInput.value + "," + heightInput.value + "]");
         Debug.Log("Dead End Chance: "+ deadEndChanceInput.value );
+
+        mazeGenScript.RunGen();
     }
     
     private void playHandler(ClickEvent evt)
