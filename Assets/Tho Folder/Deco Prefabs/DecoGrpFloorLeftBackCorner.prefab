@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634382217353231448}
+  - component: {fileID: 6854852169454948757}
   m_Layer: 0
   m_Name: DecoGrpFloorLeftBackCorner
   m_TagString: Untagged
@@ -33,9 +34,22 @@ Transform:
   - {fileID: 1782550630504510235}
   - {fileID: 7846313491324299990}
   - {fileID: 5358388362145502633}
-  - {fileID: 5358296483802517519}
+  - {fileID: 5833156655181606762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6854852169454948757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523431039499748522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad43304d3b14595bcf114f293b22fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conflictsWithStair: 0
 --- !u!1001 &1777936661708503849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319,7 +333,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c0aee4764d3c1e47bc704c0fbfa3a77, type: 3}
---- !u!4 &5358296483802517519 stripped
+--- !u!4 &5833156655181606762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4372640194763882, guid: 0c0aee4764d3c1e47bc704c0fbfa3a77, type: 3}
   m_PrefabInstance: {fileID: 5835541374023512832}

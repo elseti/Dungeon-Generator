@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2563761290728502407}
+  - component: {fileID: 1573126248750687129}
   m_Layer: 0
   m_Name: DecoGrpStairsSide
   m_TagString: Untagged
@@ -39,11 +40,24 @@ Transform:
   - {fileID: 5668276604022402481}
   - {fileID: 8806839507831449864}
   - {fileID: 623694666446219217}
-  - {fileID: 8105320453103456194}
+  - {fileID: 4636432932324993356}
   - {fileID: 7343903774077328531}
   - {fileID: 9214176252749967055}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1573126248750687129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216384549523495550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad43304d3b14595bcf114f293b22fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conflictsWithStair: 0
 --- !u!1001 &510002583047700798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,7 +607,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 069901a1effefa94a933643db6b4faa6, type: 3}
---- !u!4 &8105320453103456194 stripped
+--- !u!4 &4636432932324993356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8704526647431753713, guid: 069901a1effefa94a933643db6b4faa6, type: 3}
   m_PrefabInstance: {fileID: 4078954981954160317}

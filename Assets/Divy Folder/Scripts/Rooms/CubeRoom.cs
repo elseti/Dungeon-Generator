@@ -63,6 +63,10 @@ public class CubeRoom : MonoBehaviour, IRoom {
         startDirection = node.direction;
     }
 
+    public bool HasStairs() {
+        return !hasFloor || !hasCeiling;
+    }
+
     private void ToggleWalls() {
         _leftWall.SetActive(hasLeftWall && !mergeLeft);
         _rightWall.SetActive(hasRightWall && !mergeRight);
@@ -87,7 +91,7 @@ public class CubeRoom : MonoBehaviour, IRoom {
     }
 
     private void OnEnable() {
-        var components = gameObject.GetComponentsInChildren<Transform>()
+        var components = GetComponentsInChildren<Transform>()
             .Where(t => t.parent == transform)
             .Select(t => t.gameObject)
             .ToArray();
