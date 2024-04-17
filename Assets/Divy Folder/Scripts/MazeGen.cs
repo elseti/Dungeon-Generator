@@ -297,7 +297,6 @@ public class MazeGen : MonoBehaviour {
                 nodePrefab = roomPrefab;
             }
 
-            var roomType = nodePrefab.GetComponent<IRoom>();
             var room = Instantiate(
                 nodePrefab,
                 new Vector3(node.gridX * GRID_UNIT_SIZE, node.gridY * GRID_UNIT_SIZE, node.gridZ * GRID_UNIT_SIZE),
