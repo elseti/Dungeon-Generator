@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.56158954, g: 0.72180885, b: 0.817857, a: 1}
+  m_IndirectSpecularColor: {r: 0.56159216, g: 0.7218083, b: 0.81785756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -272,7 +272,7 @@ MonoBehaviour:
   teeRoomChance: 15
   throughRoomChance: 15
   allowOverlappingRooms: 0
-  debugShowPath: 1
+  debugShowPath: 0
   roomPrefab: {fileID: 7670495664361240192, guid: 553bb7bf7b9682c429a03108c6a55d3a, type: 3}
   tunnelPrefab: {fileID: 4512733987353925044, guid: cbc8bdc10ee51b84a8ed1912a69cba4d, type: 3}
   env: {fileID: 524995474}
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 %
+  m_text: 15 %
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
   m_sharedMaterial: {fileID: -8792490803988328365, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 %
+  m_text: 15 %
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
   m_sharedMaterial: {fileID: -8792490803988328365, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 %
+  m_text: 15 %
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
   m_sharedMaterial: {fileID: -8792490803988328365, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
@@ -3846,7 +3846,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4576,7 +4576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 %
+  m_text: 15 %
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
   m_sharedMaterial: {fileID: -8792490803988328365, guid: 1369c5fc871ff44059edae7863d6c3e2, type: 2}
@@ -6857,7 +6857,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7166,7 +7166,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7416,7 +7416,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
