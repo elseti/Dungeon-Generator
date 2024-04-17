@@ -263,9 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6c6e2c2583e224cafd4403695cb895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numNodesX: 10
+  numNodesX: 5
   numNodesY: 2
-  numNodesZ: 10
+  numNodesZ: 5
   deadEndChance: 20
   squareRoomChance: 15
   cornerRoomChance: 15
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5042419715767043176}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomisationUI, Assembly-CSharp
         m_MethodName: PlayButtonClicked
         m_Mode: 1
@@ -2178,7 +2178,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1002911686240586495
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,34 +5938,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3666998700431037829}
   m_CullTransparentMesh: 1
---- !u!114 &5042419715767043176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5563223484539727967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e59fbe4e493c4620af731c662ea97b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeGen: {fileID: 221761210}
-  playerObject: {fileID: 2678462050413011585}
-  cameraDolly: {fileID: 1650367693}
-  customisationMenu: {fileID: 3209113731407482235}
-  escapeMenu: {fileID: 1324112676516927230}
-  lengthInput: {fileID: 6522758345354352197}
-  widthInput: {fileID: 4350316452145047812}
-  heightInput: {fileID: 7233257142422518563}
-  deadEndChanceSlider: {fileID: 2912578993252539525}
-  squareRoomChanceSlider: {fileID: 2941706988474506412}
-  cornerRoomChanceSlider: {fileID: 6954760068685906474}
-  teeRoomChanceSlider: {fileID: 7754371135491863678}
-  throughRoomChanceSlider: {fileID: 7300739129197006335}
-  allowOverlappingRoomsToggle: {fileID: 3207006068571077437}
-  debugShowPathToggle: {fileID: 940576486301960580}
-  errorText: {fileID: 6586103345923674833}
 --- !u!224 &5057809196813183771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6311,7 +6283,6 @@ GameObject:
   m_Component:
   - component: {fileID: 387114091136149418}
   - component: {fileID: 5904026565912149803}
-  - component: {fileID: 5042419715767043176}
   - component: {fileID: 3613399738617345555}
   - component: {fileID: 2430995036516624057}
   m_Layer: 5
@@ -8976,7 +8947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5042419715767043176}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomisationUI, Assembly-CSharp
         m_MethodName: GenerateButtonClicked
         m_Mode: 1
