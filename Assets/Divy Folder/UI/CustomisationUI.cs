@@ -70,7 +70,7 @@ public class CustomisationUI : MonoBehaviour
                 try
                 {
                     // Generate dungeon
-                    mazeGen.RunGen();
+                    mazeGen.StartGen();
                 }
                 catch (Exception e)
                 {

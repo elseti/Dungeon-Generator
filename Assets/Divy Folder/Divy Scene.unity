@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221761209}
   - component: {fileID: 221761210}
+  - component: {fileID: 221761211}
   m_Layer: 0
   m_Name: Cardinal
   m_TagString: Untagged
@@ -274,8 +275,36 @@ MonoBehaviour:
   debugShowPath: 1
   roomPrefab: {fileID: 7670495664361240192, guid: 553bb7bf7b9682c429a03108c6a55d3a, type: 3}
   tunnelPrefab: {fileID: 4512733987353925044, guid: cbc8bdc10ee51b84a8ed1912a69cba4d, type: 3}
-  env: {fileID: 524995474}
+  env: {fileID: 0}
   player: {fileID: 7763941910932770274}
+--- !u!114 &221761211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221761208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e59fbe4e493c4620af731c662ea97b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeGen: {fileID: 221761210}
+  playerObject: {fileID: 2678462050413011585}
+  cameraDolly: {fileID: 1650367693}
+  customisationMenu: {fileID: 3209113731407482235}
+  escapeMenu: {fileID: 1324112676516927230}
+  lengthInput: {fileID: 6522758345354352197}
+  widthInput: {fileID: 4350316452145047812}
+  heightInput: {fileID: 7233257142422518563}
+  deadEndChanceSlider: {fileID: 2912578993252539525}
+  squareRoomChanceSlider: {fileID: 2941706988474506412}
+  cornerRoomChanceSlider: {fileID: 6954760068685906474}
+  teeRoomChanceSlider: {fileID: 7754371135491863678}
+  throughRoomChanceSlider: {fileID: 7300739129197006335}
+  allowOverlappingRoomsToggle: {fileID: 3207006068571077437}
+  debugShowPathToggle: {fileID: 940576486301960580}
+  errorText: {fileID: 6586103345923674833}
 --- !u!1 &229360666
 GameObject:
   m_ObjectHideFlags: 0

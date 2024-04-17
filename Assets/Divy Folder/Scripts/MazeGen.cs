@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Direction;
 using Random = System.Random;
 
@@ -25,7 +27,7 @@ public class MazeGen : MonoBehaviour {
     [Header("Level Settings")]
     [SerializeField] private GameObject roomPrefab;
     [SerializeField] private GameObject tunnelPrefab;
-    [SerializeField] private GameObject level;
+    [SerializeField] private GameObject env;
     [SerializeField] private Transform player;
 
     public static bool showPath = false;
@@ -301,7 +303,7 @@ public class MazeGen : MonoBehaviour {
                 nodePrefab,
                 new Vector3(node.gridX * GRID_UNIT_SIZE, node.gridY * GRID_UNIT_SIZE, node.gridZ * GRID_UNIT_SIZE),
                 Quaternion.identity,
-                level.transform
+                env.transform
             );
             var objRoom = room.GetComponent<IRoom>();
             objRoom.SetConnections(node);
@@ -310,10 +312,26 @@ public class MazeGen : MonoBehaviour {
 
     }
 
-    private void OnEnable() {
+    public void StartGen() {
+        CleanGen();
         InitNodes();
         GenMaze();
         CreateRooms();
+    }
+    
+    private void OnEnable() {
+        StartGen();
+    }
+    
+    private void CleanGen() {
+        // Iterate through each GameObject
+        var children = env.GetComponentsInChildren<Transform>()
+            .Where(t => t.parent == env.transform)
+            .Select(t => t.gameObject)
+            .ToArray();
+        foreach (var child in children) {
+            Destroy(child);
+        }
     }
 
     private void FixedUpdate() {
