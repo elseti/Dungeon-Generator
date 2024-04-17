@@ -10,6 +10,4 @@ public class PlayerConstants : ScriptableObject {
 
     public float moveSpeed = 10f;
     public float gravity = -9.81f;
-
-    // public float raycastDistance = 1f;
 }
