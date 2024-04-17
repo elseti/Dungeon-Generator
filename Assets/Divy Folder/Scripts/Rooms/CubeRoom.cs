@@ -4,9 +4,6 @@ using UnityEngine;
 using static Direction;
 
 public class CubeRoom : MonoBehaviour, IRoom {
-    public float sizeX => MazeGen.GRID_UNIT_SIZE;
-    public float sizeY => MazeGen.GRID_UNIT_SIZE;
-    public float sizeZ => MazeGen.GRID_UNIT_SIZE;
 
     // [HideInInspector]
     public Direction startDirection = NULL;
@@ -17,6 +14,11 @@ public class CubeRoom : MonoBehaviour, IRoom {
     public bool hasBackWall = true;
     public bool hasFloor = true;
     public bool hasCeiling = true;
+
+    public bool mergeLeft = false;
+    public bool mergeRight = false;
+    public bool mergeFront = false;
+    public bool mergeBack = false;
 
     private GameObject _leftWall;
     private GameObject _rightWall;
@@ -45,28 +47,34 @@ public class CubeRoom : MonoBehaviour, IRoom {
         {DOWN, Quaternion.Euler(0, 0, -90)},
     };
 
-    public void SetWallsDir(Node node) {
+    public void SetConnections(Node node) {
         hasLeftWall = !node.connectionLeft;
         hasRightWall = !node.connectionRight;
         hasFrontWall = !node.connectionFront;
         hasBackWall = !node.connectionBack;
         hasFloor = !node.connectionDown;
         hasCeiling = !node.connectionUp;
+
+        mergeLeft = node.mergeLeft;
+        mergeRight = node.mergeRight;
+        mergeFront = node.mergeFront;
+        mergeBack = node.mergeBack;
+
         startDirection = node.direction;
     }
 
     private void ToggleWalls() {
-        _leftWall.SetActive(hasLeftWall);
-        _rightWall.SetActive(hasRightWall);
-        _frontWall.SetActive(hasFrontWall);
-        _backWall.SetActive(hasBackWall);
+        _leftWall.SetActive(hasLeftWall && !mergeLeft);
+        _rightWall.SetActive(hasRightWall && !mergeRight);
+        _frontWall.SetActive(hasFrontWall && !mergeFront);
+        _backWall.SetActive(hasBackWall && !mergeBack);
         _floor.SetActive(hasFloor);
-        _ceiling.SetActive(hasCeiling);
+        _ceiling.SetActive(hasCeiling); // todo: temporarily commented
 
-        _leftWallDoor.SetActive(!hasLeftWall);
-        _rightWallDoor.SetActive(!hasRightWall);
-        _frontWallDoor.SetActive(!hasFrontWall);
-        _backWallDoor.SetActive(!hasBackWall);
+        _leftWallDoor.SetActive(!hasLeftWall && !mergeLeft);
+        _rightWallDoor.SetActive(!hasRightWall && !mergeRight);
+        _frontWallDoor.SetActive(!hasFrontWall && !mergeFront);
+        _backWallDoor.SetActive(!hasBackWall && !mergeBack);
         _floorDoor.SetActive(!hasFloor);
         _ceilingDoor.SetActive(!hasCeiling);
 
@@ -107,6 +115,8 @@ public class CubeRoom : MonoBehaviour, IRoom {
         _backWallDoor.SetActive(false);
         _floorDoor.SetActive(false);
         _ceilingDoor.SetActive(false);
+
+        // _ceiling.SetActive(false); // todo: temporarily uncommented
 
         _arrowPos = _arrow.transform.position;
     }

@@ -6,8 +6,6 @@ public class Node {
     public int gridY;
     public int gridZ;
 
-    public NodeType type;
-
     public bool visited = false;
     public bool connectionLeft = false;
     public bool connectionRight = false;
@@ -15,6 +13,11 @@ public class Node {
     public bool connectionBack = false;
     public bool connectionUp = false;
     public bool connectionDown = false;
+
+    public bool mergeLeft = false;
+    public bool mergeRight = false;
+    public bool mergeFront = false;
+    public bool mergeBack = false;
 
     public Direction direction = NULL;
     public Node(int gridX, int gridY, int gridZ) {
@@ -90,8 +93,8 @@ public class Node {
             && !connectionRight
             && !connectionFront
             && !connectionBack
-            && !connectionUp
-            && !connectionDown
+            && !hasStairs()
+            && !isMerged()
         );
     }
 
@@ -99,29 +102,33 @@ public class Node {
         return connectionUp || connectionDown;
     }
 
+    public bool isMerged() {
+        return mergeLeft || mergeRight || mergeFront || mergeBack;
+    }
+
     public void SetConnection(Direction dir) {
         if (dir == NULL) {
             return;
         }
         switch (dir) {
-            case LEFT:
-                connectionLeft = true;
-                break;
-            case RIGHT:
-                connectionRight = true;
-                break;
-            case FRONT:
-                connectionFront = true;
-                break;
-            case BACK:
-                connectionBack = true;
-                break;
-            case UP:
-                connectionUp = true;
-                break;
-            case DOWN:
-                connectionDown = true;
-                break;
+            case LEFT: connectionLeft = true; break;
+            case RIGHT: connectionRight = true; break;
+            case FRONT: connectionFront = true; break;
+            case BACK: connectionBack = true; break;
+            case UP: connectionUp = true; break;
+            case DOWN: connectionDown = true; break;
+        }
+    }
+
+    public void SetMerge(Direction dir) {
+        if (dir is NULL or UP or DOWN) {
+            return;
+        }
+        switch (dir) {
+            case LEFT: mergeLeft = true; break;
+            case RIGHT: mergeRight = true; break;
+            case FRONT: mergeFront = true; break;
+            case BACK: mergeBack = true; break;
         }
     }
 }
