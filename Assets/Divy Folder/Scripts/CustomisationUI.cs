@@ -11,6 +11,18 @@ public class CustomisationUI : MonoBehaviour
     public MazeGen mazeGen;
 
     public TextMeshProUGUI lengthInput;
+    public TextMeshProUGUI widthInput;
+    public TextMeshProUGUI heightInput;
+
+    public UnityEngine.UI.Slider deadEndChanceSlider;
+    public UnityEngine.UI.Slider squareRoomChanceSlider;
+    public UnityEngine.UI.Slider cornerRoomChanceSlider;
+    public UnityEngine.UI.Slider teeRoomChanceSlider;
+    public UnityEngine.UI.Slider throughRoomChanceSlider;
+
+    public Toggle allowOverlappingRoomsToggle;
+    public Toggle debugShowPathToggle;
+    
     public TextMeshProUGUI errorText;
 
     public void GenerateButtonClicked()
@@ -19,11 +31,44 @@ public class CustomisationUI : MonoBehaviour
         try
         {
             int length = int.Parse(lengthInput.text.Substring(0, lengthInput.text.Length - 1));
-            print(length);
-            mazeGen.numNodesX = length;
+            int width = int.Parse(widthInput.text.Substring(0, lengthInput.text.Length - 1));
+            int height = int.Parse(heightInput.text.Substring(0, lengthInput.text.Length - 1));
+
+            int deadEndChance = (int) deadEndChanceSlider.value;
+            int squareRoomChance = (int) squareRoomChanceSlider.value;
+            int cornerRoomChance = (int) cornerRoomChanceSlider.value;
+            int teeRoomChance = (int) teeRoomChanceSlider.value;
+            int throughRoomChance = (int) throughRoomChanceSlider.value;
+
+            int chanceSum = squareRoomChance + cornerRoomChance + teeRoomChance + throughRoomChance;
+            
+            // Check sum of chances
+            if (chanceSum < 101)
+            {
+                // Assign to MazeGen 
+                mazeGen.numNodesX = length;
+                mazeGen.numNodesY = height;
+                mazeGen.numNodesZ = width;
+
+                mazeGen.deadEndChance = deadEndChance;
+                mazeGen.squareRoomChance = squareRoomChance;
+                mazeGen.cornerRoomChance = cornerRoomChance;
+                mazeGen.teeRoomChance = teeRoomChance;
+                mazeGen.throughRoomChance = throughRoomChance;
+
+                mazeGen.allowOverlappingRooms = allowOverlappingRoomsToggle.isOn;
+                mazeGen.debugShowPath = debugShowPathToggle.isOn;
+            }
+            else
+            {
+                errorText.text = "Sum of room chances must be below 100%.";
+            }
+            
+            
         }
         catch (Exception e)
         {
+            print(e);
             errorText.text = "Wrong format.";
         }
         
@@ -38,19 +83,5 @@ public class CustomisationUI : MonoBehaviour
     private void Update()
     {
         
-    }
-
-    private void ParseTextToInt(string text)
-    {
-        string resString = "";
-        int resInt;
-        foreach (char s in text)
-        {
-            print(s);
-            resString.Append(s);
-        }
-        print("before" + resString);
-        resInt = int.Parse(resString);
-        print(resInt);
     }
 }
