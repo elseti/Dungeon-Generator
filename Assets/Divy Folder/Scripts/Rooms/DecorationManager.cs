@@ -19,10 +19,10 @@ public class DecorationManager : MonoBehaviour {
 
         foreach (var decor in toEnable) {
             decor.SetActive(true);
-            var lights = decor.GetComponentsInChildren<Light>().Select(t => t.gameObject).ToArray();
-            foreach (var _light in lights) {
-                _light.SetActive(false);
-            }
+            // var lights = decor.GetComponentsInChildren<Light>().Select(t => t.gameObject).ToArray();
+            // foreach (var _light in lights) {
+            //     _light.SetActive(false);
+            // }
         }
     }
 
