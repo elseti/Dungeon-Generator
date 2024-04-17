@@ -67,8 +67,17 @@ public class CustomisationUI : MonoBehaviour
                 mazeGen.allowOverlappingRooms = allowOverlappingRoomsToggle.isOn;
                 mazeGen.debugShowPath = debugShowPathToggle.isOn;
 
-                // Generate dungeon
-                mazeGen.RunGen();
+                try
+                {
+                    // Generate dungeon
+                    mazeGen.RunGen();
+                }
+                catch (Exception e)
+                {
+                    print(e);
+                    errorText.text = "No feasible dungeon generated.";
+                }
+                
                 
             }
             else
