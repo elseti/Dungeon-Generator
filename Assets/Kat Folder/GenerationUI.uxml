@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Main.uss?fileID=7433441132597879392&amp;guid=afa81954b550446d4935eaf376380f20&amp;type=3#Main" />
+    <ui:VisualElement style="flex-grow: initial; background-color: rgb(255, 234, 191); width: 350px; margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; align-self: flex-start; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; flex-basis: auto; flex-wrap: nowrap;">
+        <ui:Label tabindex="-1" text="DunGen" display-tooltip-when-elided="true" class="title" style="-unity-font-style: bold;" />
+        <ui:IntegerField label="Length" value="5" name="LengthInput" style="flex-grow: initial;" />
+        <ui:IntegerField label="Width&#10;" value="5" name="WidthInput" style="flex-grow: initial;" />
+        <ui:IntegerField label="Height&#10;" value="5" name="HeightInput" style="flex-grow: initial;" />
+        <ui:FloatField label="Dead End Chance" value="20" name="DeadEndChanceInput" style="flex-grow: initial;" />
+        <ui:Button text="Generate" display-tooltip-when-elided="true" name="GenerateButton" style="flex-grow: initial;" />
+        <ui:Button text="PLAY" display-tooltip-when-elided="true" name="PlayButton" style="flex-grow: initial;" />
+    </ui:VisualElement>
+</ui:UXML>
