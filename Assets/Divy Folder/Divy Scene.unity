@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 221761211}
         m_TargetAssemblyTypeName: CustomisationUI, Assembly-CSharp
         m_MethodName: PlayButtonClicked
         m_Mode: 1
@@ -8947,7 +8947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 221761211}
         m_TargetAssemblyTypeName: CustomisationUI, Assembly-CSharp
         m_MethodName: GenerateButtonClicked
         m_Mode: 1
