@@ -311,7 +311,7 @@ public class MazeGen : MonoBehaviour {
 
     }
 
-    private void Start() {
+    private void OnEnable() {
         InitNodes();
         GenMaze();
         CreateRooms();

@@ -36,7 +36,9 @@ public class DecorationManager : MonoBehaviour {
         foreach (var decor in decors) {
             decor.SetActive(false);
         }
+    }
 
+    private void Start() {
         SelectDecors();
     }
 }

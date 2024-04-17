@@ -84,7 +84,7 @@ public class CubeRoom : MonoBehaviour, IRoom {
 
         _stairs.SetActive(!hasCeiling);
 
-        _arrow.SetActive(startDirection != NULL);
+        _arrow.SetActive(MazeGen.showPath && startDirection != NULL);
         var pos = new Vector3(_arrowPos.x, _arrowPos.y + (startDirection is UP or DOWN ? 3f : 0), _arrowPos.z);
         _arrow.transform.position = pos;
         _arrow.transform.rotation = rotation[startDirection];

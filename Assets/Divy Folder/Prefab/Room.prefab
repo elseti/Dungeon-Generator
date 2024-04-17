@@ -3291,7 +3291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5495926238443650216, guid: 662c17a06c3343f43a954d687b3582e3, type: 3}
       propertyPath: conflictsWithStairs
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
