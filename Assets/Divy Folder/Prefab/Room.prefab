@@ -1893,6 +1893,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5932873607450091661}
     m_Modifications:
+    - target: {fileID: -6624295841067345733, guid: ec479e178c0a68e41abecdfd696a4555, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1090806906756277412, guid: ec479e178c0a68e41abecdfd696a4555, type: 3}
       propertyPath: m_Name
       value: DecoGrpFloorRightBackCorner
@@ -2059,6 +2063,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4832282906153166226, guid: c19f65be77c703242bd1eb7f1c0a7f24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230759621904884741, guid: c19f65be77c703242bd1eb7f1c0a7f24, type: 3}
+      propertyPath: conflictsWithStairs
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2257,68 +2265,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 104348601098295964, guid: c3ceb8be99f6fa645905f59249bbea27, type: 3}
   m_PrefabInstance: {fileID: 1507733241279959171}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1593416239198041320
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4223709884969220944}
-    m_Modifications:
-    - target: {fileID: 3577223413406702664, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_Name
-      value: DecoGrpWallRightCenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.03000009
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
---- !u!4 &9056951298923245892 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7758631890443683244, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
-  m_PrefabInstance: {fileID: 1593416239198041320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1693564929169381260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2393,6 +2339,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DecoGrpWallBackLHS
       objectReference: {fileID: 0}
+    - target: {fileID: 191510172002340500, guid: 88f3abe163780ef47a3a5b89d49fe22a, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6599749434628731823, guid: 88f3abe163780ef47a3a5b89d49fe22a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.16
@@ -2442,68 +2392,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6599749434628731823, guid: 88f3abe163780ef47a3a5b89d49fe22a, type: 3}
   m_PrefabInstance: {fileID: 1730051534931935339}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1868224605929191026
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5721657218147626915}
-    m_Modifications:
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.3730884
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.4300017
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5761349660309344415, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-      propertyPath: m_Name
-      value: DecoGrpWallFrontCenter
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
---- !u!4 &1607620326019014523 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1126513753215609097, guid: 95e607753c0066f4f8ba29ddd176185c, type: 3}
-  m_PrefabInstance: {fileID: 1868224605929191026}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2422500232050875496
 PrefabInstance:
@@ -2702,6 +2590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6450944943570411657}
     m_Modifications:
+    - target: {fileID: -3571164029428976953, guid: fa7770a3b32157b42bd525da32c88338, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 43041878480359724, guid: fa7770a3b32157b42bd525da32c88338, type: 3}
       propertyPath: m_Name
       value: DecoGrpFloorRightFrontCorner
@@ -2937,9 +2829,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9056951298923245892}
-    - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3714011227988715012}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
@@ -3087,6 +2976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DecoGrpWallBackLHS
       objectReference: {fileID: 0}
+    - target: {fileID: 191510172002340500, guid: 88f3abe163780ef47a3a5b89d49fe22a, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6599749434628731823, guid: 88f3abe163780ef47a3a5b89d49fe22a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.16
@@ -3194,10 +3087,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3507641914759527292}
+      addedObject: {fileID: 5192730488087584535}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5192730488087584535}
+      addedObject: {fileID: 3507641914759527292}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 79605835436645188}
@@ -3394,6 +3287,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4628212806480575878, guid: 662c17a06c3343f43a954d687b3582e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495926238443650216, guid: 662c17a06c3343f43a954d687b3582e3, type: 3}
+      propertyPath: conflictsWithStairs
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3814,68 +3711,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
   m_PrefabInstance: {fileID: 5919724099546512180}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6263036656156099630
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5515409217706564397}
-    m_Modifications:
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5025090165169527793, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-      propertyPath: m_Name
-      value: DecoGrpWallLeftCenter
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
---- !u!4 &7767908141757295639 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4406739162458335289, guid: 300be66ed67213e4eb0369d44b588653, type: 3}
-  m_PrefabInstance: {fileID: 6263036656156099630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6375489360389319159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3936,9 +3771,6 @@ PrefabInstance:
       addedObject: {fileID: 8134508356928214786}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7767908141757295639}
-    - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1868386696668906133}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
@@ -3955,6 +3787,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2363045527178154284}
     m_Modifications:
+    - target: {fileID: -3389253102961034140, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3577223413406702664, guid: 55fe7c2058fdfbb4aa1c73f28732b8d0, type: 3}
       propertyPath: m_Name
       value: DecoGrpWallRightCenter
@@ -4066,9 +3902,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1607620326019014523}
-    - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4438168911992095516}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
@@ -4150,6 +3983,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6450944943570411657}
     m_Modifications:
+    - target: {fileID: -6624295841067345733, guid: ec479e178c0a68e41abecdfd696a4555, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1090806906756277412, guid: ec479e178c0a68e41abecdfd696a4555, type: 3}
       propertyPath: m_Name
       value: DecoGrpFloorRightBackCorner
@@ -4337,68 +4174,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
   m_PrefabInstance: {fileID: 7609965681374306953}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7680642360892375825
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8658381400463420627}
-    m_Modifications:
-    - target: {fileID: 7010408745839681341, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_Name
-      value: DecoGrpWallBackCenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.295415
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.4500017
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
---- !u!4 &321804901131054178 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7989482851608014707, guid: a03b3c5aad393524683efeb4f8b54f15, type: 3}
-  m_PrefabInstance: {fileID: 7680642360892375825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7697431334723195298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4407,6 +4182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5932873607450091661}
     m_Modifications:
+    - target: {fileID: -3571164029428976953, guid: fa7770a3b32157b42bd525da32c88338, type: 3}
+      propertyPath: conflictsWithStairs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 43041878480359724, guid: fa7770a3b32157b42bd525da32c88338, type: 3}
       propertyPath: m_Name
       value: DecoGrpFloorRightFrontCorner
@@ -4516,9 +4295,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 321804901131054178}
     - targetCorrespondingSourceObject: {fileID: 1508955177872863962, guid: 4e2e88e350f4fb84fb0c304d60195c93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4869910244427150276}

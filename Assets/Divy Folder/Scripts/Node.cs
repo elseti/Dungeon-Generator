@@ -54,8 +54,11 @@ public class Node {
         if(
             !HasStairs()
             && !connectionRight
+            && !mergeRight
             && 0 < gridY
             && !nodes[gridZ, gridY - 1, gridX].visited
+            && !nodes[gridZ, gridY - 1, gridX].connectionRight
+            && !nodes[gridZ, gridY - 1, gridX].mergeRight
         ) {
             neighbours.Add(nodes[gridZ, gridY - 1, gridX]);
             dirs.Add(DOWN);
@@ -63,8 +66,11 @@ public class Node {
         if(
             !HasStairs()
             && !connectionRight
+            && !mergeRight
             && gridY + 1 < numNodesY
             && !nodes[gridZ, gridY + 1, gridX].visited
+            && !nodes[gridZ, gridY + 1, gridX].connectionRight
+            && !nodes[gridZ, gridY + 1, gridX].mergeRight
         ) {
             neighbours.Add(nodes[gridZ, gridY + 1, gridX]);
             dirs.Add(UP);
