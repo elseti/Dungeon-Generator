@@ -5,17 +5,17 @@ using Random = System.Random;
 
 public class MazeGen : MonoBehaviour {
     [Header("Dimensions")]
-    public int numNodesX = 5;
-    public int numNodesY = 5;
-    public int numNodesZ = 5;
+    public int numNodesX = 10;
+    public int numNodesY = 2;
+    public int numNodesZ = 10;
 
     [Header("Probabilities (sum of room chances must be <= 100)")]
     public int deadEndChance = 20;
 
-    public int squareRoomChance = 10;
-    public int cornerRoomChance = 10;
-    public int teeRoomChance = 10;
-    public int throughRoomChance = 10;
+    public int squareRoomChance = 15;
+    public int cornerRoomChance = 15;
+    public int teeRoomChance = 15;
+    public int throughRoomChance = 15;
 
     [Header("Misc")]
     public bool allowOverlappingRooms = false;
@@ -68,11 +68,15 @@ public class MazeGen : MonoBehaviour {
         var botRight = nodes[node.gridZ, node.gridY, node.gridX+1];
 
         if (
-            botLeft.isMerged()
-            || topLeft.isMerged()
-            || topRight.isMerged()
-            || botRight.isMerged()
-            && !allowOverlappingRooms
+            botLeft.HasStairs()
+            || botRight.HasStairs()
+            || !allowOverlappingRooms
+            && (
+                botLeft.IsMerged()
+                || topLeft.IsMerged()
+                || topRight.IsMerged()
+                || botRight.IsMerged()
+            )
         ) {
             return;
         }
@@ -98,10 +102,12 @@ public class MazeGen : MonoBehaviour {
         var top = nodes[node.gridZ + 2, node.gridY, node.gridX];
 
         if (
-            bot.isMerged()
-            || mid.isMerged()
-            || top.isMerged()
-            && !allowOverlappingRooms
+            !allowOverlappingRooms
+            && (
+                bot.IsMerged()
+                || mid.IsMerged()
+                || top.IsMerged()
+            )
         ) {
             return false;
         }
@@ -123,10 +129,14 @@ public class MazeGen : MonoBehaviour {
         var top = nodes[node.gridZ, node.gridY, node.gridX + 2];
 
         if (
-            bot.isMerged()
-            || mid.isMerged()
-            || top.isMerged()
-            && !allowOverlappingRooms
+            bot.HasStairs()
+            || mid.HasStairs()
+            || !allowOverlappingRooms
+            && (
+                bot.IsMerged()
+                || mid.IsMerged()
+                || top.IsMerged()
+            )
         ) {
             return false;
         }
@@ -142,12 +152,12 @@ public class MazeGen : MonoBehaviour {
         if (rnd.Next(100) < 50 && node.gridZ + 1 < numNodesZ) {
             var topNode = nodes[node.gridZ + 1, node.gridY, node.gridX];
             if (rnd.Next(100) < 50) {
-                if ((!topNode.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
+                if ((!topNode.IsMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
                     topNode.SetMerge(BACK);
                     node.SetMerge(FRONT);
                     return;
                 }
-            } else if ((!node.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(topNode)) {
+            } else if ((!node.IsMerged() || allowOverlappingRooms) && CreateHorizontalLine(topNode)) {
                 topNode.SetMerge(BACK);
                 node.SetMerge(FRONT);
                 return;
@@ -160,11 +170,11 @@ public class MazeGen : MonoBehaviour {
 
         var rightNode = nodes[node.gridZ, node.gridY, node.gridX + 1];
         if (rnd.Next(100) < 50) {
-            if ((!rightNode.isMerged() || allowOverlappingRooms) && CreateVerticalLine(node)) {
+            if ((!rightNode.IsMerged() || allowOverlappingRooms) && !node.HasStairs() && CreateVerticalLine(node)) {
                 rightNode.SetMerge(LEFT);
                 node.SetMerge(RIGHT);
             }
-        } else if ((!node.isMerged() || allowOverlappingRooms) && CreateVerticalLine(rightNode)) {
+        } else if ((!node.IsMerged() || allowOverlappingRooms) && !node.HasStairs() && CreateVerticalLine(rightNode)) {
             rightNode.SetMerge(LEFT);
             node.SetMerge(RIGHT);
         }
@@ -176,12 +186,12 @@ public class MazeGen : MonoBehaviour {
             var topMid = nodes[node.gridZ + 1, node.gridY, node.gridX + 1];
             var botMid = nodes[node.gridZ, node.gridY, node.gridX + 1];
             if (rnd.Next(100) < 50) {
-                if ((!topMid.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
+                if ((!topMid.IsMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
                     topMid.SetMerge(BACK);
                     botMid.SetMerge(FRONT);
                     return;
                 }
-            } else if ((!botMid.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(topCorner)) {
+            } else if ((!botMid.IsMerged() || allowOverlappingRooms) && CreateHorizontalLine(topCorner)) {
                 topMid.SetMerge(BACK);
                 botMid.SetMerge(FRONT);
                 return;
@@ -196,11 +206,11 @@ public class MazeGen : MonoBehaviour {
         var leftMid = nodes[node.gridZ + 1, node.gridY, node.gridX];
         var rightMid = nodes[node.gridZ + 1, node.gridY, node.gridX + 1];
         if (rnd.Next(100) < 50) {
-            if ((!rightMid.isMerged() || allowOverlappingRooms) && CreateVerticalLine(node)) {
+            if ((!rightMid.IsMerged() || allowOverlappingRooms) && CreateVerticalLine(node)) {
                 leftMid.SetMerge(RIGHT);
                 rightMid.SetMerge(LEFT);
             }
-        } else if ((!leftMid.isMerged() || allowOverlappingRooms) && CreateVerticalLine(rightCorner)) {
+        } else if ((!leftMid.IsMerged() || allowOverlappingRooms) && CreateVerticalLine(rightCorner)) {
             leftMid.SetMerge(RIGHT);
             rightMid.SetMerge(LEFT);
         }
@@ -209,7 +219,7 @@ public class MazeGen : MonoBehaviour {
     private void CreateThroughRoom(Node node) {
         if (rnd.Next(100) < 50 && node.gridX + 4 < numNodesX) {
             var rightNode = nodes[node.gridZ, node.gridY, node.gridX + 1];
-            if((!node.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(rightNode)) {
+            if((!node.IsMerged() || allowOverlappingRooms) && !node.HasStairs() && CreateHorizontalLine(rightNode)) {
                 node.SetMerge(RIGHT);
                 rightNode.SetMerge(LEFT);
             }
@@ -221,7 +231,7 @@ public class MazeGen : MonoBehaviour {
         }
 
         var topNode = nodes[node.gridZ + 1, node.gridY, node.gridX];
-        if((!node.isMerged() || allowOverlappingRooms) && CreateVerticalLine(topNode)) {
+        if((!node.IsMerged() || allowOverlappingRooms) && CreateVerticalLine(topNode)) {
             node.SetMerge(FRONT);
             topNode.SetMerge(BACK);
         }
@@ -283,7 +293,7 @@ public class MazeGen : MonoBehaviour {
                 continue;
             }
             var nodePrefab = tunnelPrefab;
-            if (node.hasStairs() || node.isMerged()) {
+            if (node.HasStairs() || node.IsMerged()) {
                 nodePrefab = roomPrefab;
             }
 
@@ -301,7 +311,7 @@ public class MazeGen : MonoBehaviour {
 
     }
 
-    private void Start() {
+    private void OnEnable() {
         InitNodes();
         GenMaze();
         CreateRooms();
