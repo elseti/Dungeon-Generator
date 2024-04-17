@@ -62,6 +62,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""2523cfec-b388-45d3-a95d-fdb8602872e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""MousePos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d523f59-f01e-4cf7-8a62-c56797c8b355"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -313,6 +333,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_gameplay_MouseMove = m_gameplay.FindAction("MouseMove", throwIfNotFound: true);
         m_gameplay_MousePos = m_gameplay.FindAction("MousePos", throwIfNotFound: true);
         m_gameplay_MousePress = m_gameplay.FindAction("MousePress", throwIfNotFound: true);
+        m_gameplay_Escape = m_gameplay.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -378,6 +399,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_MouseMove;
     private readonly InputAction m_gameplay_MousePos;
     private readonly InputAction m_gameplay_MousePress;
+    private readonly InputAction m_gameplay_Escape;
     public struct GameplayActions
     {
         private @PlayerAction m_Wrapper;
@@ -386,6 +408,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         public InputAction @MouseMove => m_Wrapper.m_gameplay_MouseMove;
         public InputAction @MousePos => m_Wrapper.m_gameplay_MousePos;
         public InputAction @MousePress => m_Wrapper.m_gameplay_MousePress;
+        public InputAction @Escape => m_Wrapper.m_gameplay_Escape;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,6 +430,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @MousePress.started += instance.OnMousePress;
             @MousePress.performed += instance.OnMousePress;
             @MousePress.canceled += instance.OnMousePress;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -423,6 +449,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @MousePress.started -= instance.OnMousePress;
             @MousePress.performed -= instance.OnMousePress;
             @MousePress.canceled -= instance.OnMousePress;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -491,5 +520,6 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         void OnMouseMove(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnMousePress(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }
