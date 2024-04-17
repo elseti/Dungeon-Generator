@@ -321,7 +321,7 @@ public class MazeGen : MonoBehaviour {
     //
     // }
 
-    private void RunGen() {
+    public void RunGen() {
         // FetchParams();
         CleanGen();
         InitNodes();
