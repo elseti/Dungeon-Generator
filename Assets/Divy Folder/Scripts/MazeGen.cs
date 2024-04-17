@@ -4,20 +4,35 @@ using static Direction;
 using Random = System.Random;
 
 public class MazeGen : MonoBehaviour {
+    [Header("Dimensions")]
     public int numNodesX = 5;
     public int numNodesY = 5;
+    public int numNodesZ = 5;
 
-    public const float GRID_UNIT_SIZE = 9;
+    [Header("Probabilities (sum of room chances must be <= 100)")]
+    public int deadEndChance = 20;
 
+    public int squareRoomChance = 10;
+    public int cornerRoomChance = 10;
+    public int teeRoomChance = 10;
+    public int throughRoomChance = 10;
+
+    [Header("Misc")]
+    public bool allowOverlappingRooms = false;
+    public bool debugShowPath = false;
+
+
+    [Header("Level Settings")]
     [SerializeField] private GameObject roomPrefab;
     [SerializeField] private GameObject tunnelPrefab;
-
     [SerializeField] private GameObject level;
-    [SerializeField] private bool _showPath = false;
+    [SerializeField] private Transform player;
 
     public static bool showPath = false;
 
-    private Node[,] nodes;
+    public const float GRID_UNIT_SIZE = 9;
+
+    private Node[,,] nodes;
     private Stack<Node> lastNode;
 
     private static Random rnd = new();
@@ -27,44 +42,200 @@ public class MazeGen : MonoBehaviour {
         { RIGHT, LEFT },
         { FRONT, BACK },
         { BACK, FRONT },
+        { UP, DOWN },
+        { DOWN, UP },
     };
 
     private void InitNodes() {
-        nodes = new Node[numNodesY, numNodesX];
-        for (var i = 0; i < numNodesY; ++i) {
-            for (var j = 0; j < numNodesX; ++j) {
-                nodes[i, j] = new Node(j, i);
+        nodes = new Node[numNodesZ, numNodesY, numNodesX];
+        for (var i = 0; i < numNodesZ; ++i) {
+            for (var j = 0; j < numNodesY; ++j) {
+                for(var k = 0; k < numNodesX; ++k) {
+                    nodes[i, j, k] = new Node(k, j, i);
+                }
             }
         }
     }
 
-    private Node GetRandomNeighbour(Node current) {
-        List<Node> neighbours = new();
-        List<Direction> dirs = new();
+    private void CreateSquareRoom(Node node) {
+        if (node.gridX + 1 >= numNodesX || node.gridZ + 1 >= numNodesZ) {
+            return;
+        }
 
-        if(!current.connectionLeft && 0 < current.gridX && !nodes[ current.gridY, current.gridX - 1].visited) {
-            neighbours.Add(nodes[ current.gridY, current.gridX - 1]);
-            dirs.Add(LEFT);
+        var botLeft = node;
+        var topLeft = nodes[node.gridZ+1, node.gridY, node.gridX];
+        var topRight = nodes[node.gridZ+1, node.gridY, node.gridX+1];
+        var botRight = nodes[node.gridZ, node.gridY, node.gridX+1];
+
+        if (
+            botLeft.isMerged()
+            || topLeft.isMerged()
+            || topRight.isMerged()
+            || botRight.isMerged()
+            && !allowOverlappingRooms
+        ) {
+            return;
         }
-        if(!current.connectionRight && current.gridX + 1 < numNodesX && !nodes[current.gridY, current.gridX + 1].visited) {
-            neighbours.Add(nodes[current.gridY, current.gridX + 1]);
-            dirs.Add(RIGHT);
+
+        botLeft.SetMerge(FRONT);
+        botLeft.SetMerge(RIGHT);
+        topLeft.SetMerge(RIGHT);
+        topLeft.SetMerge(BACK);
+
+        topRight.SetMerge(LEFT);
+        topRight.SetMerge(BACK);
+        botRight.SetMerge(FRONT);
+        botRight.SetMerge(LEFT);
+    }
+
+    private bool CreateVerticalLine(Node node) {
+        if (node.gridZ + 3 >= numNodesZ) {
+            return false;
         }
-        if(!current.connectionBack && 0 < current.gridY && !nodes[current.gridY - 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridY - 1, current.gridX]);
-            dirs.Add(BACK);
+
+        var bot = node;
+        var mid = nodes[node.gridZ + 1, node.gridY, node.gridX];
+        var top = nodes[node.gridZ + 2, node.gridY, node.gridX];
+
+        if (
+            bot.isMerged()
+            || mid.isMerged()
+            || top.isMerged()
+            && !allowOverlappingRooms
+        ) {
+            return false;
         }
-        if(!current.connectionFront && current.gridY + 1 < numNodesY && !nodes[current.gridY + 1, current.gridX].visited) {
-            neighbours.Add(nodes[current.gridY + 1, current.gridX]);
-            dirs.Add(FRONT);
+
+        top.SetMerge(BACK);
+        mid.SetMerge(FRONT);
+        mid.SetMerge(BACK);
+        bot.SetMerge(FRONT);
+        return true;
+    }
+
+    private bool CreateHorizontalLine(Node node) {
+        if (node.gridX + 3 >= numNodesX) {
+            return false;
         }
+
+        var bot = node;
+        var mid = nodes[node.gridZ, node.gridY, node.gridX + 1];
+        var top = nodes[node.gridZ, node.gridY, node.gridX + 2];
+
+        if (
+            bot.isMerged()
+            || mid.isMerged()
+            || top.isMerged()
+            && !allowOverlappingRooms
+        ) {
+            return false;
+        }
+
+        top.SetMerge(LEFT);
+        mid.SetMerge(RIGHT);
+        mid.SetMerge(LEFT);
+        bot.SetMerge(RIGHT);
+        return true;
+    }
+
+    private void CreateCornerRoom(Node node) {
+        if (rnd.Next(100) < 50 && node.gridZ + 1 < numNodesZ) {
+            var topNode = nodes[node.gridZ + 1, node.gridY, node.gridX];
+            if (rnd.Next(100) < 50) {
+                if ((!topNode.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
+                    topNode.SetMerge(BACK);
+                    node.SetMerge(FRONT);
+                    return;
+                }
+            } else if ((!node.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(topNode)) {
+                topNode.SetMerge(BACK);
+                node.SetMerge(FRONT);
+                return;
+            }
+        }
+
+        if (node.gridX + 1 >= numNodesX) {
+            return;
+        }
+
+        var rightNode = nodes[node.gridZ, node.gridY, node.gridX + 1];
+        if (rnd.Next(100) < 50) {
+            if ((!rightNode.isMerged() || allowOverlappingRooms) && CreateVerticalLine(node)) {
+                rightNode.SetMerge(LEFT);
+                node.SetMerge(RIGHT);
+            }
+        } else if ((!node.isMerged() || allowOverlappingRooms) && CreateVerticalLine(rightNode)) {
+            rightNode.SetMerge(LEFT);
+            node.SetMerge(RIGHT);
+        }
+    }
+
+    private void CreateTeeRoom(Node node) {
+        if (rnd.Next(100) < 50 && node.gridZ + 1 < numNodesZ && node.gridX + 1 < numNodesX) {
+            var topCorner = nodes[node.gridZ + 1, node.gridY, node.gridX];
+            var topMid = nodes[node.gridZ + 1, node.gridY, node.gridX + 1];
+            var botMid = nodes[node.gridZ, node.gridY, node.gridX + 1];
+            if (rnd.Next(100) < 50) {
+                if ((!topMid.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(node)) {
+                    topMid.SetMerge(BACK);
+                    botMid.SetMerge(FRONT);
+                    return;
+                }
+            } else if ((!botMid.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(topCorner)) {
+                topMid.SetMerge(BACK);
+                botMid.SetMerge(FRONT);
+                return;
+            }
+        }
+
+        if (node.gridX + 1 >= numNodesX || node.gridZ + 1 >= numNodesZ) {
+            return;
+        }
+
+        var rightCorner = nodes[node.gridZ, node.gridY, node.gridX + 1];
+        var leftMid = nodes[node.gridZ + 1, node.gridY, node.gridX];
+        var rightMid = nodes[node.gridZ + 1, node.gridY, node.gridX + 1];
+        if (rnd.Next(100) < 50) {
+            if ((!rightMid.isMerged() || allowOverlappingRooms) && CreateVerticalLine(node)) {
+                leftMid.SetMerge(RIGHT);
+                rightMid.SetMerge(LEFT);
+            }
+        } else if ((!leftMid.isMerged() || allowOverlappingRooms) && CreateVerticalLine(rightCorner)) {
+            leftMid.SetMerge(RIGHT);
+            rightMid.SetMerge(LEFT);
+        }
+    }
+
+    private void CreateThroughRoom(Node node) {
+        if (rnd.Next(100) < 50 && node.gridX + 4 < numNodesX) {
+            var rightNode = nodes[node.gridZ, node.gridY, node.gridX + 1];
+            if((!node.isMerged() || allowOverlappingRooms) && CreateHorizontalLine(rightNode)) {
+                node.SetMerge(RIGHT);
+                rightNode.SetMerge(LEFT);
+            }
+            return;
+        }
+
+        if (node.gridZ + 4 >= numNodesZ) {
+            return;
+        }
+
+        var topNode = nodes[node.gridZ + 1, node.gridY, node.gridX];
+        if((!node.isMerged() || allowOverlappingRooms) && CreateVerticalLine(topNode)) {
+            node.SetMerge(FRONT);
+            topNode.SetMerge(BACK);
+        }
+    }
+
+    private Node GetRandomNeighbour(Node current) {
+        current.GetAllNeighbours(nodes, out var neighbours, out var dirs);
 
         if (neighbours.Count == 0) {
             return null;
         }
 
         var i = rnd.Next(neighbours.Count);
-        if (rnd.Next(100) < 20) {
+        if (rnd.Next(100) < deadEndChance) {
             neighbours[i].visited = true;
             return GetRandomNeighbour(current);
         }
@@ -74,12 +245,25 @@ public class MazeGen : MonoBehaviour {
         var neighbour = neighbours[i];
         neighbour.direction = opposite[dirs[i]];
         neighbour.SetConnection(neighbour.direction);
+
+        var square  = 100    - squareRoomChance;
+        var corner  = square - cornerRoomChance;
+        var tee     = corner - teeRoomChance;
+        var through = tee    - throughRoomChance;
+
+        var type = rnd.Next(100);
+        if      (type >= square)  CreateSquareRoom(neighbour);
+        else if (type >= corner)  CreateCornerRoom(neighbour);
+        else if (type >= tee)     CreateTeeRoom(neighbour);
+        else if (type >= through) CreateThroughRoom(neighbour);
+
         return neighbour;
     }
 
     private void GenMaze() {
         lastNode = new Stack<Node>();
-        var current = nodes[0, numNodesX/2];
+        var current = nodes[0, 0, numNodesX/2];
+        player.transform.position = new Vector3(current.gridX * GRID_UNIT_SIZE, current.gridY + 2, current.gridZ * GRID_UNIT_SIZE);
 
         do {
             current.visited = true;
@@ -98,21 +282,23 @@ public class MazeGen : MonoBehaviour {
             if (node.isEmpty()) {
                 continue;
             }
-            var nodePrefab = roomPrefab;
-            if (rnd.Next(2) == 1) {
-                nodePrefab = tunnelPrefab;
+            var nodePrefab = tunnelPrefab;
+            if (node.hasStairs() || node.isMerged()) {
+                nodePrefab = roomPrefab;
             }
 
             var roomType = nodePrefab.GetComponent<IRoom>();
             var room = Instantiate(
                 nodePrefab,
-                new Vector3(node.gridX * roomType.sizeX, 0, node.gridY * roomType.sizeY),
+                new Vector3(node.gridX * GRID_UNIT_SIZE, node.gridY * GRID_UNIT_SIZE, node.gridZ * GRID_UNIT_SIZE),
                 Quaternion.identity,
                 level.transform
             );
             var objRoom = room.GetComponent<IRoom>();
-            objRoom.SetWallsDir(node);
+            objRoom.SetConnections(node);
         }
+
+
     }
 
     private void Start() {
@@ -122,6 +308,6 @@ public class MazeGen : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        showPath = _showPath;
+        showPath = debugShowPath;
     }
 }
