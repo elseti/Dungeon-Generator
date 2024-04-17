@@ -69,7 +69,7 @@ public class CubeRoom : MonoBehaviour, IRoom {
         _frontWall.SetActive(hasFrontWall && !mergeFront);
         _backWall.SetActive(hasBackWall && !mergeBack);
         _floor.SetActive(hasFloor);
-        _ceiling.SetActive(hasCeiling); // todo: temporarily commented
+        // _ceiling.SetActive(hasCeiling); // todo: temporarily commented
 
         _leftWallDoor.SetActive(!hasLeftWall && !mergeLeft);
         _rightWallDoor.SetActive(!hasRightWall && !mergeRight);
@@ -116,7 +116,7 @@ public class CubeRoom : MonoBehaviour, IRoom {
         _floorDoor.SetActive(false);
         _ceilingDoor.SetActive(false);
 
-        // _ceiling.SetActive(false); // todo: temporarily uncommented
+        _ceiling.SetActive(false); // todo: temporarily uncommented
 
         _arrowPos = _arrow.transform.position;
     }
