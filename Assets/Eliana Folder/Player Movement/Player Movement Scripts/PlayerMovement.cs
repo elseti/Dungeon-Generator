@@ -53,13 +53,17 @@ public class PlayerMovement : MonoBehaviour {
     private void Update()
     {
         Move();
-        // if (GameState.isInteractionAllowed) {
-        //     Move();
-        // } else {
-        //     _controller.Move(Vector3.zero);
-        // }
     }
 
+    private void OnEnable()
+    {
+        _playerAction = new PlayerAction();
+        _playerAction.Enable();
+
+        _playerAction.gameplay.Move.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
+        _playerAction.gameplay.Move.canceled += ctx => OnMove(ctx.ReadValue<Vector2>());
+    }
+    
     private void OnDisable() {
         _playerAction.Disable();
     }

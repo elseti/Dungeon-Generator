@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class CustomisationUI : MonoBehaviour
 {
     public MazeGen mazeGen;
+    public GameObject playerObject;
+    public GameObject cameraDolly;
+    public GameObject customisationMenu;
+    public GameObject escapeMenu;
 
     public TextMeshProUGUI lengthInput;
     public TextMeshProUGUI widthInput;
@@ -24,6 +28,8 @@ public class CustomisationUI : MonoBehaviour
     public Toggle debugShowPathToggle;
     
     public TextMeshProUGUI errorText;
+
+    private bool _inPlayMode = false;
 
     public void GenerateButtonClicked()
     {
@@ -63,8 +69,7 @@ public class CustomisationUI : MonoBehaviour
             {
                 errorText.text = "Sum of room chances must be below 100%.";
             }
-            
-            
+
         }
         catch (Exception e)
         {
@@ -74,14 +79,35 @@ public class CustomisationUI : MonoBehaviour
         
         mazeGen.RunGen();
     }
-    
+
+    public void PlayButtonClicked()
+    {
+        playerObject.SetActive(true);
+        cameraDolly.SetActive(false);
+        customisationMenu.SetActive(false);
+        escapeMenu.SetActive(true);
+        // Cursor.lockState = CursorLockMode.Locked;
+        _inPlayMode = true;
+    }
+
     private void Start()
     {
-        
+        escapeMenu.SetActive(false);
     }
     
     private void Update()
     {
-        
+        if (_inPlayMode)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                print("escaped");
+                playerObject.SetActive(false);
+                cameraDolly.SetActive(true);
+                customisationMenu.SetActive(true);
+                escapeMenu.SetActive(false);
+                _inPlayMode = false;
+            }
+        }
     }
 }
