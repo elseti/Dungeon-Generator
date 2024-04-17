@@ -36,7 +36,7 @@ public class Node {
         if(
             !connectionLeft
             && 0 < gridX
-            && !nodes[gridZ, gridY, gridX - 1].hasStairs()
+            && !nodes[gridZ, gridY, gridX - 1].HasStairs()
             && !nodes[gridZ, gridY, gridX - 1].visited
         ) {
             neighbours.Add(nodes[gridZ, gridY, gridX - 1]);
@@ -44,7 +44,7 @@ public class Node {
         }
         if(
             !connectionRight
-            && !hasStairs()
+            && !HasStairs()
             && gridX + 1 < numNodesX
             && !nodes[gridZ, gridY, gridX + 1].visited
         ) {
@@ -52,19 +52,25 @@ public class Node {
             dirs.Add(RIGHT);
         }
         if(
-            !hasStairs()
+            !HasStairs()
             && !connectionRight
+            && !mergeRight
             && 0 < gridY
             && !nodes[gridZ, gridY - 1, gridX].visited
+            && !nodes[gridZ, gridY - 1, gridX].connectionRight
+            && !nodes[gridZ, gridY - 1, gridX].mergeRight
         ) {
             neighbours.Add(nodes[gridZ, gridY - 1, gridX]);
             dirs.Add(DOWN);
         }
         if(
-            !hasStairs()
+            !HasStairs()
             && !connectionRight
+            && !mergeRight
             && gridY + 1 < numNodesY
             && !nodes[gridZ, gridY + 1, gridX].visited
+            && !nodes[gridZ, gridY + 1, gridX].connectionRight
+            && !nodes[gridZ, gridY + 1, gridX].mergeRight
         ) {
             neighbours.Add(nodes[gridZ, gridY + 1, gridX]);
             dirs.Add(UP);
@@ -93,16 +99,16 @@ public class Node {
             && !connectionRight
             && !connectionFront
             && !connectionBack
-            && !hasStairs()
-            && !isMerged()
+            && !HasStairs()
+            && !IsMerged()
         );
     }
 
-    public bool hasStairs() {
+    public bool HasStairs() {
         return connectionUp || connectionDown;
     }
 
-    public bool isMerged() {
+    public bool IsMerged() {
         return mergeLeft || mergeRight || mergeFront || mergeBack;
     }
 

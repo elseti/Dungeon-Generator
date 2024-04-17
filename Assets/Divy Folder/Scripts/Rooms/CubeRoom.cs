@@ -63,6 +63,10 @@ public class CubeRoom : MonoBehaviour, IRoom {
         startDirection = node.direction;
     }
 
+    public bool HasStairs() {
+        return !hasFloor || !hasCeiling;
+    }
+
     private void ToggleWalls() {
         _leftWall.SetActive(hasLeftWall && !mergeLeft);
         _rightWall.SetActive(hasRightWall && !mergeRight);
@@ -80,14 +84,14 @@ public class CubeRoom : MonoBehaviour, IRoom {
 
         _stairs.SetActive(!hasCeiling);
 
-        _arrow.SetActive(startDirection != NULL);
+        _arrow.SetActive(MazeGen.showPath && startDirection != NULL);
         var pos = new Vector3(_arrowPos.x, _arrowPos.y + (startDirection is UP or DOWN ? 3f : 0), _arrowPos.z);
         _arrow.transform.position = pos;
         _arrow.transform.rotation = rotation[startDirection];
     }
 
     private void OnEnable() {
-        var components = gameObject.GetComponentsInChildren<Transform>()
+        var components = GetComponentsInChildren<Transform>()
             .Where(t => t.parent == transform)
             .Select(t => t.gameObject)
             .ToArray();

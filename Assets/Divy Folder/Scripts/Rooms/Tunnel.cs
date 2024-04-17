@@ -37,7 +37,11 @@ public class Tunnel : MonoBehaviour, IRoom {
         startDirection = node.direction;
     }
 
-    private void through() {
+    public bool HasStairs() {
+        return false;
+    }
+
+    private void Through() {
         _tunnelThrough.SetActive(true);
         _wallBack.SetActive(false);
         _wallFront.SetActive(false);
@@ -56,9 +60,9 @@ public class Tunnel : MonoBehaviour, IRoom {
         }
     }
 
-    private void throughOrCorner() {
+    private void ThroughOrCorner() {
         if ((hasFrontConnection && hasBackConnection) || (hasLeftConnection && hasRightConnection)) {
-            through();
+            Through();
             return;
         }
         _tunnelCorner.SetActive(true);
@@ -73,7 +77,7 @@ public class Tunnel : MonoBehaviour, IRoom {
         }
     }
 
-    private void tee() {
+    private void Tee() {
         _tunnelTee.SetActive(true);
         if (hasLeftConnection && hasRightConnection) {
             _tunnelTee.transform.rotation = Quaternion.Euler(0, hasBackConnection ? 0 : 180, 0);
@@ -82,7 +86,7 @@ public class Tunnel : MonoBehaviour, IRoom {
         }
     }
 
-    private void cross() {
+    private void Cross() {
         _tunnelCross.SetActive(true);
     }
 
@@ -98,10 +102,10 @@ public class Tunnel : MonoBehaviour, IRoom {
                            + (hasBackConnection ? 1 : 0);
         switch (connections) {
             case 0: break;
-            case 1: through(); break;
-            case 2: throughOrCorner(); break;
-            case 3: tee(); break;
-            case 4: cross(); break;
+            case 1: Through(); break;
+            case 2: ThroughOrCorner(); break;
+            case 3: Tee(); break;
+            case 4: Cross(); break;
         }
 
         _arrow.SetActive(MazeGen.showPath && startDirection != NULL);
@@ -109,7 +113,7 @@ public class Tunnel : MonoBehaviour, IRoom {
     }
 
     private void OnEnable() {
-        var components = gameObject.GetComponentsInChildren<Transform>()
+        var components = GetComponentsInChildren<Transform>()
             .Where(t => t.parent == transform)
             .Select(t => t.gameObject)
             .ToArray();

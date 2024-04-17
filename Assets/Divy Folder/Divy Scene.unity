@@ -266,10 +266,10 @@ MonoBehaviour:
   numNodesY: 2
   numNodesZ: 10
   deadEndChance: 20
-  squareRoomChance: 10
-  cornerRoomChance: 10
-  teeRoomChance: 10
-  throughRoomChance: 10
+  squareRoomChance: 15
+  cornerRoomChance: 15
+  teeRoomChance: 15
+  throughRoomChance: 15
   allowOverlappingRooms: 0
   debugShowPath: 1
   roomPrefab: {fileID: 7670495664361240192, guid: 553bb7bf7b9682c429a03108c6a55d3a, type: 3}
