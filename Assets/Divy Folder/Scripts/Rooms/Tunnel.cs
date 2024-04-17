@@ -4,9 +4,6 @@ using UnityEngine;
 using static Direction;
 
 public class Tunnel : MonoBehaviour, IRoom {
-    public float sizeX => MazeGen.GRID_UNIT_SIZE;
-    public float sizeY => MazeGen.GRID_UNIT_SIZE;
-    public float sizeZ => MazeGen.GRID_UNIT_SIZE;
 
     // [HideInInspector]
     public Direction startDirection = NULL;
@@ -32,7 +29,7 @@ public class Tunnel : MonoBehaviour, IRoom {
         {BACK, Quaternion.Euler(90, 90, 0)}
     };
 
-    public void SetWallsDir(Node node) {
+    public void SetConnections(Node node) {
         hasLeftConnection = node.connectionLeft;
         hasRightConnection = node.connectionRight;
         hasFrontConnection = node.connectionFront;
