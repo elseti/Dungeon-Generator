@@ -42,7 +42,7 @@ public class UI : MonoBehaviour
         playerObject.SetActive(false);
         
         mazeGenScript = FindObjectOfType<MazeGen>();
-        mazeGenScript.RunGen(lengthInput.value, widthInput.value, heightInput.value, deadEndChanceInput.value);
+        // mazeGenScript.RunGen(lengthInput.value, widthInput.value, heightInput.value, deadEndChanceInput.value);
     }
 
     private void generateHandler(ClickEvent evt)
@@ -50,7 +50,7 @@ public class UI : MonoBehaviour
         Debug.Log("Size: ["+lengthInput.value+", " + widthInput.value + "," + heightInput.value + "]");
         Debug.Log("Dead End Chance: "+ deadEndChanceInput.value );
 
-        mazeGenScript.RunGen(lengthInput.value, widthInput.value, heightInput.value, deadEndChanceInput.value);
+        // mazeGenScript.RunGen(lengthInput.value, widthInput.value, heightInput.value, deadEndChanceInput.value);
     }
     
     private void playHandler(ClickEvent evt)

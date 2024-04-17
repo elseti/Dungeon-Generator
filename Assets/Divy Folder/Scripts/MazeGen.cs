@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static Direction;
 using Random = System.Random;
 
@@ -25,7 +27,7 @@ public class MazeGen : MonoBehaviour {
     [Header("Level Settings")]
     [SerializeField] private GameObject roomPrefab;
     [SerializeField] private GameObject tunnelPrefab;
-    [SerializeField] private GameObject level;
+    [SerializeField] private GameObject env;
     [SerializeField] private Transform player;
 
     public static bool showPath = false;
@@ -292,43 +294,43 @@ public class MazeGen : MonoBehaviour {
                 nodePrefab,
                 new Vector3(node.gridX * GRID_UNIT_SIZE, node.gridY * GRID_UNIT_SIZE, node.gridZ * GRID_UNIT_SIZE),
                 Quaternion.identity,
-                level.transform
+                env.transform
             );
             var objRoom = room.GetComponent<IRoom>();
             objRoom.SetConnections(node);
         }
     }
 
-    private void CleanGen()
-    {
-        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-
+    private void CleanGen() {
         // Iterate through each GameObject
-        foreach (GameObject obj in allObjects)
-        {
-            // Check if the name contains "(Clone)"
-            if (obj.name.Contains("(Clone)"))
-            {
-                // Destroy the GameObject
-                Destroy(obj);
-            }
+        var children = env.GetComponentsInChildren<Transform>()
+            .Where(t => t.parent == env.transform)
+            .Select(t => t.gameObject)
+            .ToArray();
+        foreach (var child in children) {
+            Destroy(child);
         }
     }
 
-    public void RunGen(int length, int width, int height, float deadEndChance)
-    {
-        // Debug.Log("Cleaning...");
+    private void FetchParams() {
+        var document = GetComponent<UIDocument>();
+        var lengthInput = document.rootVisualElement.Q("LengthInput") as IntegerField;
+        var widthInput = document.rootVisualElement.Q("WidthInput") as IntegerField;
+        var heightInput = document.rootVisualElement.Q("HeightInput") as IntegerField;
+        var deadEndChanceInput = document.rootVisualElement.Q("DeadEndChanceInput") as FloatField;
+
+    }
+
+    private void RunGen() {
+        FetchParams();
         CleanGen();
-        // Debug.Log("Generating...");
-        InitNodes(length, height, width);
-        GenMaze(deadEndChance);
+        InitNodes();
+        GenMaze();
         CreateRooms();
     }
 
     private void Start() {
-        // InitNodes();
-        // GenMaze();
-        // CreateRooms();
+        RunGen();
     }
 
     private void FixedUpdate() {
