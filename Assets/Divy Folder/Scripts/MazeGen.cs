@@ -312,17 +312,17 @@ public class MazeGen : MonoBehaviour {
         }
     }
 
-    private void FetchParams() {
-        var document = GetComponent<UIDocument>();
-        var lengthInput = document.rootVisualElement.Q("LengthInput") as IntegerField;
-        var widthInput = document.rootVisualElement.Q("WidthInput") as IntegerField;
-        var heightInput = document.rootVisualElement.Q("HeightInput") as IntegerField;
-        var deadEndChanceInput = document.rootVisualElement.Q("DeadEndChanceInput") as FloatField;
-
-    }
+    // private void FetchParams() {
+    //     var document = GetComponent<UIDocument>();
+    //     var lengthInput = document.rootVisualElement.Q("LengthInput") as IntegerField;
+    //     var widthInput = document.rootVisualElement.Q("WidthInput") as IntegerField;
+    //     var heightInput = document.rootVisualElement.Q("HeightInput") as IntegerField;
+    //     var deadEndChanceInput = document.rootVisualElement.Q("DeadEndChanceInput") as FloatField;
+    //
+    // }
 
     private void RunGen() {
-        FetchParams();
+        // FetchParams();
         CleanGen();
         InitNodes();
         GenMaze();
