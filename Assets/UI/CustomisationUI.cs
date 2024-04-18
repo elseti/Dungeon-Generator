@@ -26,6 +26,7 @@ public class CustomisationUI : MonoBehaviour
 
     public Toggle allowOverlappingRoomsToggle;
     public Toggle debugShowPathToggle;
+    public Toggle lightsToggle;
     
     public TextMeshProUGUI errorText;
 
@@ -66,6 +67,7 @@ public class CustomisationUI : MonoBehaviour
 
                 mazeGen.allowOverlappingRooms = allowOverlappingRoomsToggle.isOn;
                 mazeGen.debugShowPath = debugShowPathToggle.isOn;
+                mazeGen.lights = lightsToggle.isOn;
 
                 try
                 {
@@ -77,8 +79,6 @@ public class CustomisationUI : MonoBehaviour
                     print(e);
                     errorText.text = "No feasible dungeon generated.";
                 }
-                
-                
             }
             else
             {

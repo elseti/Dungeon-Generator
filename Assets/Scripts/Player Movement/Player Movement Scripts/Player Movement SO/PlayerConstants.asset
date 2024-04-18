@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856e7397777cb4ef9961dc14417f7ccc, type: 3}
   m_Name: PlayerConstants
   m_EditorClassIdentifier: 
-  mouseSensitivityX: 0.4
+  mouseSensitivityX: 0.25
   mouseSensitivityY: 0.25
   viewMinimumY: -60
   viewMaximumY: 60
-  moveSpeed: 10
+  moveSpeed: 5
   gravity: -9.81
