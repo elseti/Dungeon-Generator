@@ -11,18 +11,14 @@ public class DecorationManager : MonoBehaviour {
     private IRoom room;
 
     private void SelectDecors() {
-        var toEnable = decors
+        var enabledDecors = decors
             .Where(t => !t.GetComponent<Decoration>().conflictsWithStairs || !room.HasStairs())
             .OrderBy(_ => rnd.Next())
             .Take(numDecors)
             .ToArray();
 
-        foreach (var decor in toEnable) {
+        foreach (var decor in enabledDecors) {
             decor.SetActive(true);
-            // var lights = decor.GetComponentsInChildren<Light>().Select(t => t.gameObject).ToArray();
-            // foreach (var _light in lights) {
-            //     _light.SetActive(false);
-            // }
         }
     }
 

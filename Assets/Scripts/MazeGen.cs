@@ -22,6 +22,7 @@ public class MazeGen : MonoBehaviour {
     [Header("Misc")]
     public bool allowOverlappingRooms = false;
     public bool debugShowPath = false;
+    public bool lights = true;
 
 
     [Header("Level Settings")]
@@ -31,6 +32,7 @@ public class MazeGen : MonoBehaviour {
     [SerializeField] private Transform player;
 
     public static bool showPath = false;
+    public static bool doLighting = true;
 
     public const float GRID_UNIT_SIZE = 9;
 
@@ -336,5 +338,6 @@ public class MazeGen : MonoBehaviour {
 
     private void FixedUpdate() {
         showPath = debugShowPath;
+        doLighting = lights;
     }
 }
