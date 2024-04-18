@@ -16,10 +16,10 @@ To run the executable build:
 2. Once it finishes downloading, play the build from your local computer.
    
 
-To import the unity package into your unity project:
-1. Download the release ending with .unitypackage from the Releases tab.
+To import the Unity package into your Unity project:
+1. Download the .unitypackage from the Packages tab.
 2. Open your unity project, and click on Assets -> Import Package -> Custom Package.
-3. Choose the unitypackage you downloaded, and the package should be imported now.
+3. Choose the .unitypackage you downloaded, and the package should be imported now.
 
 ## Asset Credits
 * Dark Fantasy Kit by Runemark Studio
