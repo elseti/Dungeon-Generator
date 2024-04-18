@@ -26,7 +26,7 @@ public class DecorationManager : MonoBehaviour {
         }
     }
 
-    private void OnEnable() {
+    private void Awake() {
         room = transform.parent.parent.GetComponent<IRoom>();
 
         decors = GetComponentsInChildren<Decoration>()
