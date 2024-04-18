@@ -6,18 +6,17 @@ Many modern games use procedurally-generated dungeon maps. However, since these 
 Our project aims to study and explore different algorithms and techniques to procedurally generate dungeons. Furthermore, we intend to add parameter configurability, placement of furniture and decoration, as well as ensuring seamlessness. Hence, the problem we hope to solve is: How might we improve the seamlessness and configurability of procedurally generated Dungeon maps?
 
 ## Installation
-To clone the repository:
-1. Open your command prompt or terminal, then `cd`to your desired folder.
+### Cloning Repository
+1. Open your command prompt or terminal, then `cd` to your desired folder.
 2. Enter `git clone https://github.com/elseti/Dungeon-Generator`.
    
 
-To run the executable build:
+### Running builds
 1. Download the build directly from the Releases tab on the right.
 2. Once it finishes downloading, play the build from your local computer.
    
-
-To import the Unity package into your Unity project:
-1. Download the .unitypackage from the Packages tab.
+### Importing Unity package into your Unity project
+1. Download the .unitypackage from the Releases tab.
 2. Open your unity project, and click on Assets -> Import Package -> Custom Package.
 3. Choose the .unitypackage you downloaded, and the package should be imported now.
 
